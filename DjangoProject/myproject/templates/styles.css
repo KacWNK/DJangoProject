@@ -1,0 +1,141 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+}
+
+header {
+    background-color: #0d47a1;
+    color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+}
+
+a {
+    color: #64b5f6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+h1, h2, h3, h4, h5 {
+    color: #ffffff;
+}
+
+/* Navigation Bar */
+
+nav {
+    background-color: #0d47a1;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a {
+    margin-right: 20px;
+}
+
+/* Home Page Styles */
+
+#home {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#home div {
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+#home div:hover {
+    transform: scale(1.05);
+}
+
+/* Room Page Styles */
+
+#room {
+    text-align: center;
+}
+
+#room h1 {
+    color: #64b5f6;
+}
+
+#room hr {
+    border: none;
+    border-top: 2px solid #64b5f6;
+    margin: 20px 0;
+}
+
+#room .przeciwnicy {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+#room .przeciwnicy > div {
+    margin: 20px;
+    padding: 20px;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Forms Page Styles */
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    background-color: #333333;
+    border: 1px solid #555555;
+    color: #ffffff;
+}
+
+form input[type="submit"] {
+    background-color: #64b5f6;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+form input[type="submit"]:hover {
+    background-color: #4285f4;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+    #home div {
+        width: 100%;
+    }
+}

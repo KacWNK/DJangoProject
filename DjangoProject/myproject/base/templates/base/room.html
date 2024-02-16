@@ -1,0 +1,199 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        document.querySelectorAll('.show-email-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+
+                var hiddenEmail = this.parentElement.querySelector('.hidden-email');
+
+
+                hiddenEmail.style.display = (hiddenEmail.style.display === 'none' || hiddenEmail.style.display === '') ? 'block' : 'none';
+
+
+                this.innerText = (hiddenEmail.style.display === 'none' || hiddenEmail.style.display === '') ? 'Show Email' : 'Hide Email';
+            });
+        });
+    });
+    </script>
+    <style>
+
+    .hidden-email {
+        display: none;
+    }
+    .show-email-button {
+        background-color: #bf360c;
+        color: black;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    </style>
+    <style>
+
+        .przeciwnicy{
+            display: grid;
+            grid-template-columns: 1fr 5fr;
+            gap: 10px;
+
+        }
+
+
+    </style>
+<h1 style="text-align: center">{{ room.name }}</h1>
+    {% if room.id == 1 %}
+    <style>
+        .court-container {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+            max-width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .court-container:hover {
+            transform: scale(1.2);
+        }
+
+        .court-info {
+            width: 100%;
+        }
+
+        .court-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .court-image img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        {% for tcourt in tcourts %}
+            <div class="court-container">
+                <h2>{{ tcourt.name }}</h2>
+                <div class="court-info">
+                    <h3>Adres: {{ tcourt.adress }}</h3>
+                    <h3 style="width: 100%;">Strona Internetowa: <a href="{{ tcourt.wpage }}" style="display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis;">{{ tcourt.wpage }}</a></h3>
+                </div>
+                <div class="court-image">
+                    <img src="{{ tcourt.image.url }}" alt="{{ tcourt.name }}">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+    {% if room.id == 2 %}
+    <style>
+
+        a {
+            color: #bf360c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #e74c3c;
+        }
+
+        form input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        form button {
+            padding: 8px 12px;
+            background-color: #bf360c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #bf360c;
+        }
+
+
+        .przeciwnicy h3 {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .przeciwnicy h3::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
+            pointer-events: none;
+        }
+
+        .przeciwnicy h3:hover::before {
+            border-color: #bf360c
+
+        ;
+        }
+    </style>
+
+    <hr>
+    <div class="przeciwnicy">
+        <div>
+            <h4>Find your opponent</h4>
+            <div>
+                <form method="get" action="{% url 'room' prim=room.id %}">
+                    <input type="text" name="search" placeholder="day, player name or age" value="{{ search_query }}">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <hr>
+            <div><h4>Filter players by level</h4></div>
+            <div><a href="{% url 'room' prim=room.id %}">All</a></div>
+            <small>Master</small>
+            {% for level in distinct_levels %}
+                <div>
+                    <a href="{% url 'room' prim=room.id %}?q={{ level }}">{{ level }}</a>
+                </div>
+            {% endfor %}
+            <small>Noob</small>
+        </div>
+        <div>
+            <div>
+                <h2>Opponents</h2>
+                <div>
+                    <a href="{% url 'create_challenge' %}">Add a challenge</a>
+                </div>
+                <hr>
+                {% for availability in availabilities %}
+                    <div>
+                        <h3>{{ availability.user }} available on {{ availability.day }} from {{ availability.start_time }} to {{ availability.end_time }}</h3>
+                        <h4 class="hidden-email">{{ availability.user.email }}</h4>
+
+                        <a href="{% url 'update_challenge' availability.id %}">Update</a>
+                        <a href="{% url 'delete_challenge' availability.id %}">Delete</a>
+
+                        <button class="show-email-button">Show Email</button>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+body{
+    background-image: url("base/tcourts/kort2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+    #home {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+
+    }
+
+    #home-frame {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .room-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .room {
+        background-color: #1c1c1c;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    .room:hover {
+        transform: scale(1.7);
+    }
+</style>
+
+<div id="home">
+    <div id="home-frame">
+        <div class="room-container">
+            {% for room in rooms %}
+                <div class="room" onclick="window.location.href='{% url 'room' room.id %}'">
+                    <h4>{{ room.id }}. {{ room.name }}</h4>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
