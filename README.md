@@ -4,9 +4,9 @@ This Django project is designed for tennis enthusiasts to find opponents for mat
 
 # Key Features:
 
-User Authentication: Users can register and log in to their accounts securely.
-Profile Creation: Users can create profiles detailing their tennis skill level, preferred playing location, and availability.
-Match Search: Users can search for potential opponents based on criteria such as skill level, location, and availability.
+## User Authentication: Users can register and log in to their accounts securely.
+## Profile Creation: Users can create profiles detailing their tennis skill level, preferred playing location, and availability.
+## Match Search: Users can search for potential opponents based on criteria such as skill level, location, and availability.
 
 
 Overall, the Tennis Match Finder project aims to connect tennis enthusiasts, facilitate match scheduling, and enhance the overall tennis playing experience. Whether you're a beginner looking for a friendly match or a seasoned player seeking a competitive opponent, this platform provides a convenient solution for finding tennis matches.
